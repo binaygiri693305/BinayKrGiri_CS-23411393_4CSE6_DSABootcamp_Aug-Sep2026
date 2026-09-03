@@ -1,29 +1,37 @@
-class Solution:
-    def flatten(self, head):
-        if not head:
-            return head
+class Solution {
+    public Node flatten(Node head) {
+        if (head == null) {
+            return head;
+        }
 
-        curr = head
+        Node curr = head;
 
-        while curr:
-            if curr.child:
-                next_node = curr.next
+        while (curr != null) {
+            if (curr.child != null) {
+                Node nextNode = curr.next;
 
-                child = self.flatten(curr.child)
+                Node child = flatten(curr.child);
 
-                curr.next = child
-                child.prev = curr
-                curr.child = None
+                curr.next = child;
+                child.prev = curr;
+                curr.child = null;
 
-                last = child
-                while last.next:
-                    last = last.next
+                Node last = child;
 
-                last.next = next_node
+                while (last.next != null) {
+                    last = last.next;
+                }
 
-                if next_node:
-                    next_node.prev = last
+                last.next = nextNode;
 
-            curr = curr.next
+                if (nextNode != null) {
+                    nextNode.prev = last;
+                }
+            }
 
-        return head
+            curr = curr.next;
+        }
+
+        return head;
+    }
+}
