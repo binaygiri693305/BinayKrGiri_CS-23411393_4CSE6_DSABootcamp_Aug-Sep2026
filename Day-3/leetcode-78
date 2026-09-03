@@ -1,15 +1,23 @@
-class Solution:
-    def subsets(self, nums: list[int]) -> list[list[int]]:
-        result = []
+import java.util.*;
 
-        def backtrack(start, current):
-            result.append(current[:])
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
 
-            for i in range(start, len(nums)):
-                current.append(nums[i])
-                backtrack(i + 1, current)
-                current.pop()
+        backtrack(0, new ArrayList<>(), nums, result);
 
-        backtrack(0, [])
+        return result;
+    }
 
-        return result
+    private void backtrack(int start, List<Integer> current,
+                           int[] nums, List<List<Integer>> result) {
+
+        result.add(new ArrayList<>(current));
+
+        for (int i = start; i < nums.length; i++) {
+            current.add(nums[i]);
+            backtrack(i + 1, current, nums, result);
+            current.remove(current.size() - 1);
+        }
+    }
+}
