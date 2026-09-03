@@ -1,22 +1,15 @@
-class Solution:
-    def lowestCommonAncestor(self, root, p, q):
-        while root:
-            if p.val < root.val and q.val < root.val:
-                root = root.left
+class Solution {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        while (root != null) {
+            if (p.val < root.val && q.val < root.val) {
+                root = root.left;
+            } else if (p.val > root.val && q.val > root.val) {
+                root = root.right;
+            } else {
+                return root;
+            }
+        }
 
-            elif p.val > root.val and q.val > root.val:
-                root = root.right
-
-            else:
-                return root
-class Solution:
-    def lowestCommonAncestor(self, root, p, q):
-        while root:
-            if p.val < root.val and q.val < root.val:
-                root = root.left
-
-            elif p.val > root.val and q.val > root.val:
-                root = root.right
-
-            else:
-                return root
+        return null;
+    }
+}
