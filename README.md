@@ -33,19 +33,7 @@ This repository contains my day-wise Data Structures and Algorithms practice dur
 | Day 17 | 19 August 2026 | 📌 |
 | Day 18 | 20 August 2026 | 📌 |
 | Day 19 | 21 August 2026 | 📌 |
-| Day 20 | 22 August 2026 | 📌 |
-| Day 21 | 23 August 2026 | 📌 |
-| Day 22 | 24 August 2026 | 📌 |
-| Day 23 | 25 August 2026 | 📌 |
-| Day 24 | 26 August 2026 | 📌 |
-| Day 25 | 27 August 2026 | 📌 |
-| Day 26 | 28 August 2026 | 📌 |
-| Day 27 | 29 August 2026 | 📌 |
-| Day 28 | 30 August 2026 | 📌 |
-| Day 29 | 31 August 2026 | 📌 |
-| Day 30 | 01 September 2026 | 📌 |
-| Day 31 | 02 September 2026 | 📌 |
-| Day 32 | 03 September 2026 | 📌 |
+
 
 ---
 
@@ -65,7 +53,7 @@ DSA-Bootcamp-Pyramid-Consulting-August-26/
 ├── Day 9/
 ├── Day 10/
 ├── ...
-├── Day 32/
+├── Day 19/
 │
 └── README.md
 ```
