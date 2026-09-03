@@ -1,9 +1,42 @@
-class Solution:
-    def shiftGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
-        m, n = len(grid), len(grid[0])
-        flat = [grid[i][j] for i in range(m) for j in range(n)]
-        
-        k %= len(flat)  
-        shifted = flat[-k:] + flat[:-k] if k != 0 else flat
-        
-        return [shifted[i * n:(i + 1) * n] for i in range(m)]
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> shiftGrid(int[][] grid, int k) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        List<Integer> flat = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                flat.add(grid[i][j]);
+            }
+        }
+
+        k %= flat.size();
+
+        List<Integer> shifted = new ArrayList<>();
+
+        for (int i = flat.size() - k; i < flat.size(); i++) {
+            shifted.add(flat.get(i));
+        }
+
+        for (int i = 0; i < flat.size() - k; i++) {
+            shifted.add(flat.get(i));
+        }
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            List<Integer> row = new ArrayList<>();
+
+            for (int j = 0; j < n; j++) {
+                row.add(shifted.get(i * n + j));
+            }
+
+            result.add(row);
+        }
+
+        return result;
+    }
+}
