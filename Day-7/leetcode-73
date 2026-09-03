@@ -1,46 +1,58 @@
-class Solution:
-    def setZeroes(self, matrix: list[list[int]]) -> None:
-        m = len(matrix)
-        n = len(matrix[0])
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
 
-        first_row = False
-        first_col = False
+        boolean firstRow = false;
+        boolean firstCol = false;
 
-        
-        for j in range(n):
-            if matrix[0][j] == 0:
-                first_row = True
+        for (int j = 0; j < n; j++) {
+            if (matrix[0][j] == 0) {
+                firstRow = true;
+            }
+        }
 
-       
-        for i in range(m):
-            if matrix[i][0] == 0:
-                first_col = True
+        for (int i = 0; i < m; i++) {
+            if (matrix[i][0] == 0) {
+                firstCol = true;
+            }
+        }
 
-        
-        for i in range(1, m):
-            for j in range(1, n):
-                if matrix[i][j] == 0:
-                    matrix[i][0] = 0
-                    matrix[0][j] = 0
+        for (int i = 1; i < m; i++) {
+            for (int j = 1; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
 
-        
-        for i in range(1, m):
-            if matrix[i][0] == 0:
-                for j in range(1, n):
-                    matrix[i][j] = 0
+        for (int i = 1; i < m; i++) {
+            if (matrix[i][0] == 0) {
+                for (int j = 1; j < n; j++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
 
-        
-        for j in range(1, n):
-            if matrix[0][j] == 0:
-                for i in range(1, m):
-                    matrix[i][j] = 0
+        for (int j = 1; j < n; j++) {
+            if (matrix[0][j] == 0) {
+                for (int i = 1; i < m; i++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
 
-        
-        if first_row:
-            for j in range(n):
-                matrix[0][j] = 0
+        if (firstRow) {
+            for (int j = 0; j < n; j++) {
+                matrix[0][j] = 0;
+            }
+        }
 
-        
-        if first_col:
-            for i in range(m):
-                matrix[i][0] = 0
+        if (firstCol) {
+            for (int i = 0; i < m; i++) {
+                matrix[i][0] = 0;
+            }
+        }
+    }
+}
