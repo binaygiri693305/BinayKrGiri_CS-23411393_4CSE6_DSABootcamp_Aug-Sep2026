@@ -1,4 +1,14 @@
-class Solution:
-    def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
-        max_candies = max(candies)
-        return [candy + extraCandies >= max_candies for candy in candies]
+import java.util.*;
+
+class Solution {
+    public List<Boolean> kidsWithCandies(List<Integer> candies, int extraCandies) {
+        int maxCandies = Collections.max(candies);
+        List<Boolean> result = new ArrayList<>();
+
+        for (int candy : candies) {
+            result.add(candy + extraCandies >= maxCandies);
+        }
+
+        return result;
+    }
+}
