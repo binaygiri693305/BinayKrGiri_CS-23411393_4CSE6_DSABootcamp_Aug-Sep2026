@@ -1,11 +1,21 @@
-class Solution:
-    def backspaceCompare(self, s: str, t: str) -> bool:
-        def build(string):
-            stack = []
-            for c in string:
-                if c != '#':
-                    stack.append(c)
-                elif stack:
-                    stack.pop()
-            return stack
-        return build(s) == build(t)
+import java.util.*;
+
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        return build(s).equals(build(t));
+    }
+
+    private Stack<Character> build(String str) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : str.toCharArray()) {
+            if (c != '#') {
+                stack.push(c);
+            } else if (!stack.isEmpty()) {
+                stack.pop();
+            }
+        }
+
+        return stack;
+    }
+}
