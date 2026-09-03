@@ -1,25 +1,35 @@
-class Solution:
-    def permute(self, nums):
-        result = []
-        used = [False] * len(nums)
+import java.util.*;
 
-        def backtrack(current):
-            if len(current) == len(nums):
-                result.append(current[:])
-                return
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        boolean[] used = new boolean[nums.length];
 
-            for i in range(len(nums)):
-                if used[i]:
-                    continue
+        backtrack(new ArrayList<>(), nums, used, result);
 
-                current.append(nums[i])
-                used[i] = True
+        return result;
+    }
 
-                backtrack(current)
+    private void backtrack(List<Integer> current, int[] nums,
+                           boolean[] used, List<List<Integer>> result) {
 
-                current.pop()
-                used[i] = False
+        if (current.size() == nums.length) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
 
-        backtrack([])
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i]) {
+                continue;
+            }
 
-        return result
+            current.add(nums[i]);
+            used[i] = true;
+
+            backtrack(current, nums, used, result);
+
+            current.remove(current.size() - 1);
+            used[i] = false;
+        }
+    }
+}
