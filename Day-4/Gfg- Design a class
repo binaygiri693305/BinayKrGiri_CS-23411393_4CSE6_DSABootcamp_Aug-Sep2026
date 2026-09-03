@@ -1,3 +1,5 @@
-class MyClass:
-    def display(self):
-        print("Hello World")
+class MyClass {
+    public void display() {
+        System.out.println("Hello World");
+    }
+}
