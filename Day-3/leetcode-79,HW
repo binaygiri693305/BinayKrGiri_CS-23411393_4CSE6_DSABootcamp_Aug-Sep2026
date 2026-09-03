@@ -1,34 +1,43 @@
-class Solution:
-    def exist(self, board: list[list[str]], word: str) -> bool:
-        rows = len(board)
-        cols = len(board[0])
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int rows = board.length;
+        int cols = board[0].length;
 
-        def backtrack(r, c, index):
-            if index == len(word):
-                return True
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (backtrack(board, word, r, c, 0, rows, cols)) {
+                    return true;
+                }
+            }
+        }
 
-            if (r < 0 or r >= rows or
-                c < 0 or c >= cols or
-                board[r][c] != word[index]):
-                return False
+        return false;
+    }
 
-            temp = board[r][c]
-            board[r][c] = "#"
+    private boolean backtrack(char[][] board, String word, int r, int c,
+                              int index, int rows, int cols) {
 
-            found = (
-                backtrack(r + 1, c, index + 1) or
-                backtrack(r - 1, c, index + 1) or
-                backtrack(r, c + 1, index + 1) or
-                backtrack(r, c - 1, index + 1)
-            )
+        if (index == word.length()) {
+            return true;
+        }
 
-            board[r][c] = temp
+        if (r < 0 || r >= rows ||
+            c < 0 || c >= cols ||
+            board[r][c] != word.charAt(index)) {
+            return false;
+        }
 
-            return found
+        char temp = board[r][c];
+        board[r][c] = '#';
 
-        for r in range(rows):
-            for c in range(cols):
-                if backtrack(r, c, 0):
-                    return True
+        boolean found =
+            backtrack(board, word, r + 1, c, index + 1, rows, cols) ||
+            backtrack(board, word, r - 1, c, index + 1, rows, cols) ||
+            backtrack(board, word, r, c + 1, index + 1, rows, cols) ||
+            backtrack(board, word, r, c - 1, index + 1, rows, cols);
 
-        return False
+        board[r][c] = temp;
+
+        return found;
+    }
+}
