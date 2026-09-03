@@ -1,29 +1,38 @@
-class Solution:
-    def maxArea(self, mat):
-        n = len(mat)
-        m = len(mat[0])
-        
-        heights = [0] * m
-        ans = 0
-        
-        for i in range(n):
-       
-            for j in range(m):
-                if mat[i][j] == 1:
-                    heights[j] += 1
-                else:
-                    heights[j] = 0
-                    
-            stack = []
+import java.util.*;
 
-            for j in range(m + 1):
-                curr = heights[j] if j < m else 0
+class Solution {
+    public int maxArea(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
 
-                while stack and heights[stack[-1]] > curr:
-                    h = heights[stack.pop()]
-                    width = j if not stack else j - stack[-1] - 1
-                    ans = max(ans, h * width)
+        int[] heights = new int[m];
+        int ans = 0;
 
-                stack.append(j)
-            
-            return ans
+        for (int i = 0; i < n; i++) {
+
+            for (int j = 0; j < m; j++) {
+                if (mat[i][j] == 1) {
+                    heights[j] += 1;
+                } else {
+                    heights[j] = 0;
+                }
+            }
+
+            Stack<Integer> stack = new Stack<>();
+
+            for (int j = 0; j <= m; j++) {
+                int curr = j < m ? heights[j] : 0;
+
+                while (!stack.isEmpty() && heights[stack.peek()] > curr) {
+                    int h = heights[stack.pop()];
+                    int width = stack.isEmpty() ? j : j - stack.peek() - 1;
+                    ans = Math.max(ans, h * width);
+                }
+
+                stack.push(j);
+            }
+        }
+
+        return ans;
+    }
+}
