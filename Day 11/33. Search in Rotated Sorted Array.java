@@ -9,17 +9,13 @@ public class Solution {
                 return mid;
             }
 
-            // Check if left half is sorted
             if (nums[left] <= nums[mid]) {
-                // Target lies in left half
                 if (target >= nums[left] && target < nums[mid]) {
                     right = mid - 1;
                 } else {
                     left = mid + 1;
                 }
-            } 
-            // Otherwise, right half is sorted
-            else {
+            } else {
                 if (target > nums[mid] && target <= nums[right]) {
                     left = mid + 1;
                 } else {
@@ -28,6 +24,6 @@ public class Solution {
             }
         }
 
-        return -1; // not found
+        return -1;
     }
 }
