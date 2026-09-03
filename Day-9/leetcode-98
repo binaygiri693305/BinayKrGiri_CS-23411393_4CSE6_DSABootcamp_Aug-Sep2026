@@ -1,14 +1,18 @@
-class Solution:
-    def isValidBST(self, root):
-        def validate(node, low, high):
-            if not node:
-                return True
+class Solution {
+    public boolean isValidBST(TreeNode root) {
+        return validate(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
 
-            if node.val <= low or node.val >= high:
-                return False
+    private boolean validate(TreeNode node, long low, long high) {
+        if (node == null) {
+            return true;
+        }
 
-            return (validate(node.left, low, node.val) and
-                    validate(node.right, node.val, high))
+        if (node.val <= low || node.val >= high) {
+            return false;
+        }
 
-        return validate(root, float("-inf"), float("inf"))
- 
+        return validate(node.left, low, node.val) &&
+               validate(node.right, node.val, high);
+    }
+}
