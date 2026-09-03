@@ -1,19 +1,26 @@
-class Solution(object):
-    def merge(self, intervals):
-        intervals.sort(key=lambda x: x[0])
+import java.util.*;
 
-        result = []
+class Solution {
+    public int[][] merge(int[][] intervals) {
 
-        for start, end in intervals:
-            if not result or start > result[-1][1]:
-                result.append([start, end])
-            else:
-                result[-1][1] = max(result[-1][1], end)
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
 
-        return result
-                    
+        List<int[]> result = new ArrayList<>();
 
+        for (int[] interval : intervals) {
 
-       
-        
-        
+            int start = interval[0];
+            int end = interval[1];
+
+            if (result.isEmpty() || start > result.get(result.size() - 1)[1]) {
+                result.add(new int[]{start, end});
+            }
+            else {
+                result.get(result.size() - 1)[1] =
+                    Math.max(result.get(result.size() - 1)[1], end);
+            }
+        }
+
+        return result.toArray(new int[result.size()][]);
+    }
+}
